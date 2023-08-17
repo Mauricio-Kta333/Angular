@@ -1,0 +1,46 @@
+<div class="w-50 mt-3" style="margin: 0 auto;">
+    <form id="frmProducto" action="/agregarProducto/" method="post" enctype="multipart/form-data" class="was-validated">
+        <div>
+            <h3 class="text-center">AGREGAR PRODUCTO</h3>
+        </div>
+        <div class="form-floating">
+            <input type="number" name="txtCodigo" id="txtCodigo" class="form-control" required>
+            <label for="txtCodigo">Codigo Producto: </label>
+            <br>
+        </div>
+        <div class="form-floating">
+            <input type="text" name="txtNombre" id="txtNombre" class="form-control" required>
+            <label for="txtNombre">Nombre Producto </label>
+            <br>
+        </div>
+        <div class="form-floating">
+            <input type="number" name="txtPrecio" id="txtPrecio" class="form-control" required>
+            <label for="txtPrecio">Precio Producto: </label>
+            <br>
+        </div>
+
+        <div class="form-floating">
+            <select class="form-select" name="cbCategoria" id="cbCategoria"  required>
+                <option value="0">Seleccione</option>
+                
+                    <option value="1">Su madre</option>
+
+                
+            </select>
+            <label for="cbCategoria">Categoria Producto: </label>
+            <br>
+        </div>
+        <div class="form-floating">
+            <input type="file" name="Fimagen" id="Fimagen" class="form-control" accept=".jpg">
+            <label for="Fimagen">Imagen del producto: (jpg)</label>
+        </div>
+        <div class="text-center">
+            <br>
+            <img id="imagenproducto" src="" alt="" width="100" height="100">
+        </div>
+        <div>
+            <br>
+            <button class="btn btn-success mt.3">Registrar</button>
+        </div>
+    </form>
+</div>
