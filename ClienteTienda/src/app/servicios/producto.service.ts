@@ -20,10 +20,10 @@ export class ProductoService {
   }
 
   eliminarProducto(id: string): Observable<any> {
-    return this.http.get(this.url + "/" + id);
+    return this.http.get(this.url+"/"+id);
   }
 
-  agregarProducto(producto: Producto): Observable<any> {
+  agregarProducto(producto: any): Observable<any> {
     return this.http.post(this.url, producto);
   }
   

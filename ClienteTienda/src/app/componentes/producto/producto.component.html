@@ -1,46 +1,48 @@
 <div class="w-50 mt-3" style="margin: 0 auto;">
-    <form id="frmProducto" action="/agregarProducto/" method="post" enctype="multipart/form-data" class="was-validated">
+    <form [formGroup]="frmProducto" (ngSubmit)="agregarProducto(frmProducto.value)" class="w-50" style="margin: 0 auto"
+        enctype="multipart/form-data" class="was-validated">
         <div>
             <h3 class="text-center">AGREGAR PRODUCTO</h3>
         </div>
         <div class="form-floating">
-            <input type="number" name="txtCodigo" id="txtCodigo" class="form-control" required>
+            <input type="number" formControlName="txtCodigo" id="txtCodigo" class="form-control" value="" required>
             <label for="txtCodigo">Codigo Producto: </label>
             <br>
         </div>
         <div class="form-floating">
-            <input type="text" name="txtNombre" id="txtNombre" class="form-control" required>
+            <input type="text" formControlName="txtNombre" id="txtNombre" class="form-control" value="" required>
             <label for="txtNombre">Nombre Producto </label>
             <br>
         </div>
         <div class="form-floating">
-            <input type="number" name="txtPrecio" id="txtPrecio" class="form-control" required>
+            <input type="number" formControlName="txtPrecio" id="txtPrecio" class="form-control" value="" required>
             <label for="txtPrecio">Precio Producto: </label>
             <br>
         </div>
 
         <div class="form-floating">
-            <select class="form-select" name="cbCategoria" id="cbCategoria"  required>
-                <option value="0">Seleccione</option>
-                
-                    <option value="1">Su madre</option>
-
-                
+            <select class="form-select" formControlName="cbCategoria" id="cbCategoria" class="form-select" required>
+                <option value="">Seleccione</option>
+                <option *ngFor="let categoria of listaCategorias" [value]="categoria.id" >
+                    {{categoria.catNombre}}
+                </option>
             </select>
             <label for="cbCategoria">Categoria Producto: </label>
             <br>
         </div>
         <div class="form-floating">
-            <input type="file" name="Fimagen" id="Fimagen" class="form-control" accept=".jpg">
-            <label for="Fimagen">Imagen del producto: (jpg)</label>
+            <input type="file" formControlName="fileFoto" id="fileFoto" class="form-control" (change)="onFileSelect($event)">
+            <label for="fileFoto">Imagen del producto: (jpg)</label>
         </div>
         <div class="text-center">
             <br>
-            <img id="imagenproducto" src="" alt="" width="100" height="100">
+            <img id="imagenproducto" [src]="rutaFoto" alt="" width="100" height="100">
         </div>
         <div>
             <br>
             <button class="btn btn-success mt.3">Registrar</button>
+            <a href="/productos"><button type="button" class="btn btn-warning ml-2">Cancelar</button></a>
         </div>
     </form>
+    <div class="text-center">{{mensaje}}</div>
 </div>

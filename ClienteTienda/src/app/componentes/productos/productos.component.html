@@ -3,7 +3,7 @@
         <h1 class="text-center">GESTIONAR PRODUCTOS</h1>
     </div>
     <br>
-    <a href="/producto"><button class="btn btn-success" style="margin-left: 125px;">Agregar</button></a>
+    <a href="/agregarProducto/"><button class="btn btn-success" style="margin-left: 125px;">Agregar</button></a>
     <br>
     <br>
     <table class="table table-bordered w-75" style="margin: 0 auto">
@@ -18,23 +18,44 @@
             </tr>
         </thead>
         <tbody>
-            
-            <tr>
-                <td>123</td>
-                <td>HolaBB</td>
-                <td>450000</td>
-                <td>Su madre</td>
-                <td class="text-center"> 
-                    <img src="" width="50" height="50" alt="">
+
+            <tr id="fila" *ngFor="let producto of listaProductos">
+                <td>{{producto.proCodigo}}</td>
+                <td>{{producto.proNombre}}</td>
+                <td>{{producto.proPrecio | currency: 'COP'}}</td>
+                <ng-container *ngFor="let categoria of listaCategorias">
+                    <td *ngIf="categoria.id == producto.proCategoria">{{categoria.catNombre}}</td>
+                </ng-container>
+                <td class="text-center">
+                    <img src="{{producto.proFoto}}" width="50" height="50" alt="">
                 </td>
                 <td class="text-center" style="font-size: 4vh;">
-                    <a href="/">
+                    <a href="/editarProducto/{{producto.id}}">
                         <i class="fa fa-edit text-warning"></i>
                     </a>
-                    <i class="fa fa-trash text-danger" ></i>
+                    <i (click)="abrirModalEliminar(producto.id)" class="fa fa-trash text-danger"></i>
                 </td>
             </tr>
-            
         </tbody>
+
+        <div class="modal" id="modalEliminar" [ngStyle]="{'display':display}">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header bg-dark text-white">
+                        <h4 class="modal-title">Eliminar Producto</h4>
+                        <button type="button" class="text-white close" data-dismiss="modal" (click)="cerrarModal()">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        ¿Esta seguro de Eliminar el Producto?
+                    </div>
+                    <div class="modal-footer">
+                        <a href="" id="rutaEliminar">
+                            <button type="button" class="btn btn-success" id="btnEliminar" (click)="eliminarProducto()">Si</button>
+                        </a>
+                        <button type="button" class="btn btn-danger" id="btnEliminar" (click)="cerrarModal()" data-dismiss="modal">No</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </table>
 </div>
